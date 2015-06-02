@@ -223,7 +223,9 @@ def service_action(action)
     end
   when 'runit'
     @run_context.include_recipe 'runit::default'
-    sv = runit_service svc[:service_name]
+    sv = runit_service svc[:service_name] do
+      sv_timeout 300
+    end
   end
   sv.run_action(action)
   sv.updated_by_last_action?
