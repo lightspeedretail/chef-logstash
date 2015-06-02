@@ -222,7 +222,6 @@ def service_action(action)
       sv.provider(Chef::Provider::Service::Init)
     end
   when 'runit'
-    puts "DEBUG #{node.debug_value('runit', 'sv_timeout')}"
     @run_context.include_recipe 'runit::default'
     sv = runit_service svc[:service_name] do
       sv_timeout 300
